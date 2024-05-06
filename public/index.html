@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Upload File to IPFS</title>
+</head>
+<body>
+  <h1>Upload File to IPFS</h1>
+  <form id="uploadForm" enctype="multipart/form-data">
+    <input type="file" id="fileInput" name="file">
+    <button type="submit">Upload</button>
+  </form>
+
+  <div id="response"></div>
+
+  <script>
+    document.getElementById('uploadForm').addEventListener('submit', async function(event) {
+      event.preventDefault();
+      const formData = new FormData(this);
+      try {
+        const response = await fetch('/addFile', {
+          method: 'POST',
+          body: formData
+        });
+        const data = await response.json();
+        document.getElementById('response').innerText = `File added to IPFS with CID: ${data.cid}`;
+      } catch (error) {
+        console.error('Error uploading file:', error);
+        document.getElementById('response').innerText = 'Error uploading file';
+      }
+    });
+  </script>
+</body>
+</html>

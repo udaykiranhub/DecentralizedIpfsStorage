@@ -1,0 +1,23 @@
+The output indicates your code is successfully adding and pinning files to your IPFS Desktop node.
+ However, the files might not be showing up in the "IPFS files" section for a few reasons:
+
+1. Accessing the IPFS Gateway:
+
+The "IPFS files" section in your IPFS Desktop might only display locally added files through the desktop UI.
+To access the pinned file from an external source, you need to use the IPFS Gateway address.
+In your case, the code logs Server is running on port 3000. 
+This suggests the Express server with the upload functionality is running on port 3000 (not the IPFS Gateway).
+Solution: You have two options:
+
+Use an IPFS Gateway: Find the IPFS Gateway address configured in your IPFS Desktop settings (typically http://127.0.0.1:8080). 
+
+Access this address in your web browser, and you should be able to see the uploaded files by entering the CID 
+(e.g., http://127.0.0.1:8080/ipfs/QmQgJp9sJFy9nsWmmqwUrQBURhcF2cuFgep5VMKxpKRTcF).
+
+Expose the Express Server Gateway: If you intend to access the files from other applications, 
+you might need to configure your Express server to act as a gateway (requires additional configuration). Explore resources online for setting up an Express server as an IPFS gateway.
+
+2. File Type Visibility:
+
+Not all file types can be directly previewed in the IPFS Desktop UI. Images (e.g., JPG, PNG) typically work well, but other file types might require downloading or using external viewers.
+By checking the uploaded file's CID via the IPFS Gateway and ensuring proper file visibility, you should be able to access the pinned file even if it's not directly showing up in the IPFS Desktop "files" section.
